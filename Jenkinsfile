@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/lokitharanibussa/gs-maven.git'
+                git branch: 'main', credentialsId: 'github', url: 'https://github.com/rama3058/gs-maven.git'
             }
         }
 
