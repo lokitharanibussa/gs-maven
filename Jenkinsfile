@@ -9,7 +9,7 @@ pipeline {
     }
 
     environment {
-        SONAR_HOST_URL = 'http://13.233.93.12:9000' // SonarQube server URL
+        SONAR_HOST_URL = 'http://3.109.186.241:9000' // SonarQube server URL
         SONAR_PROJECT_KEY = 'org.springframework:gs-maven'
         SONAR_PROJECT_NAME = 'gs-maven'
         NEXUS_URL = 'http://13.233.245.91:8081/repository/maven-releases/' // Nexus HTTP URL
@@ -22,7 +22,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Rama3058/gs-maven.git'
+                git branch: 'main', credentialsId: 'git_hub', url: 'https://github.com/lokitharanibussa/gs-maven.git'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     dir('complete') {
-                        withCredentials([usernamePassword(credentialsId: 'sonar', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_TOKEN')]) {
+                        withCredentials([usernamePassword(credentialsId: 'SONAR_TOKEN', usernameVariable: 'SONAR_USER', passwordVariable: 'SONAR_TOKEN')]) {
                             sh """
                                 mvn clean verify sonar:sonar \
                                     -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
